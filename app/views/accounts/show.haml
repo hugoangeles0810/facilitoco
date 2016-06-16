@@ -1,0 +1,30 @@
+.row.center-xs
+  =grid xs:10, sm:8, md:6, lg:4 do
+    .white.mdl-shadow--2dp.top-space.relative
+      .big-padding.white-text.text-left.cover.relative#user-cover{style: "background-image: url(#{@user.cover.url(:medium)})"}
+        =render "accounts/menu_avatar"
+        .top-space#user-avatar
+          =circle_img @user.avatar.url(:medium), 100
+      %section.border-bottom.top-space
+        .row.middle-xs
+          =grid class: "col-xs" do
+            %h1.no-margin.medium
+              %span=best_in_place_if current_user==@user, @user, :name
+              %span=best_in_place_if current_user==@user, @user, :last_name
+          =grid xs:4, sm:2 do
+            / Boton de agregar amigo
+      .large-padding
+        .row
+          =grid class:"col-xs" do
+            Seguidores
+          =grid class:"col-xs" do
+            Posts
+        .row.center-xs
+          =grid xs:8, md:10 do
+            %span=best_in_place_if current_user==@user, @user, :bio
+
+      .top-space
+        =form_for @user, remote: true do |f|
+          =f.file_field :avatar, class: "remotipart"
+        =form_for @user, remote: true do |f|
+          =f.file_field :cover, class: "remotipart"

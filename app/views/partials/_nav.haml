@@ -1,0 +1,13 @@
+%header{class:"mdl-layout__header mdl-layout__header--scroll"}
+  .mdl-layout__header-row
+    / Title
+    %span.mdl-layout-title FacilitoCo
+    / Add spacer, to align navigation to the right
+    .mdl-layout-spacer
+    / Navigation
+    %nav.mdl-navigation
+      -if user_signed_in?
+        =link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "white-text"
+.mdl-layout__drawer
+  %span.mdl-layout-title FacilitoCo
+  %nav.mdl-navigation
